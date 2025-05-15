@@ -26,6 +26,38 @@
 </style>
 
 </head>
+  <!-- Back to Top Button -->
+<div
+  x-data="{ show: false }"
+  x-init="window.addEventListener('scroll', () => show = window.scrollY > 300)"
+  x-show="show"
+  x-transition
+  class="fixed bottom-6 right-6 z-50"
+>
+  <button
+    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-xl text-xl transition-opacity duration-300"
+    title="Back to Top"
+  >
+    ⬆️ Up
+  </button>
+</div>
+<!-- Scroll to Bottom Button -->
+<div
+  x-data="{ show: true }"
+  x-init="window.addEventListener('scroll', () => show = window.scrollY < 300)"
+  x-show="show"
+  x-transition.opacity
+  class="fixed bottom-6 left-6 z-50"
+>
+  <button
+    @click="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
+    class="bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-xl text-xl transition-opacity duration-300"
+    title="Scroll to Bottom"
+  >
+    ⬇️ Down
+  </button>
+</div>
 <body class="bg-gray-50 text-gray-800">
   <!-- Centered Transparent Logo -->
   <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
