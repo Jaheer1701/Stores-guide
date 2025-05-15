@@ -56,6 +56,35 @@
       <a href="#contact" class="block py-2 text-blue-600 hover:underline">Contact</a>
     </div>
   </nav>
+  <!-- Smart Search with Suggestions -->
+<div class="bg-white py-4 px-4 shadow sticky top-[112px] z-20" x-data="smartSearch()" @click.outside="show = false">
+  <div class="max-w-4xl mx-auto relative">
+    <div class="flex gap-2">
+      <input
+        type="text"
+        x-model="query"
+        @input="updateSuggestions"
+        @keydown.enter.prevent="goToFirstMatch"
+        placeholder="Search stores, categories, items..."
+        class="w-full border border-gray-300 rounded-lg px-4 py-2"
+      />
+      <button @click="clearSearch" class="bg-gray-200 px-3 py-2 rounded hover:bg-gray-300">Clear</button>
+    </div>
+
+    <!-- Suggestion Dropdown -->
+    <ul x-show="show && suggestions.length" class="absolute left-0 right-0 bg-white border mt-1 rounded shadow max-h-60 overflow-y-auto z-50">
+      <template x-for="(result, index) in suggestions" :key="index">
+        <li>
+          <button
+            @click="scrollTo(result.el)"
+            class="w-full text-left px-4 py-2 hover:bg-blue-100"
+            x-text="result.text"
+          ></button>
+        </li>
+      </template>
+    </ul>
+  </div>
+</div>
       <!-- Quick Category Navigation -->
 <div class="bg-white shadow py-4 px-4 sticky top-[64px] z-10">
   <div class="max-w-7xl mx-auto flex flex-wrap gap-4 justify-center text-sm font-medium">
@@ -75,7 +104,7 @@
     <h2 class="text-3xl font-bold mb-4">Discover Affordable Stores in Enschede</h2>
     <p class="text-lg">Helping international students shop smartly with local tips by Orbit Student Organisation</p>
   </header>
-  <!-- Search Functionality -->
+<!--   <!-- Search Functionality -->
 <div class="bg-white py-4 px-4 shadow sticky top-[112px] z-10" x-data="{ query: '' }">
   <div class="max-w-4xl mx-auto flex gap-2">
     <input
@@ -92,7 +121,7 @@
       Search
     </button>
   </div>
-</div>
+</div> -->
 
   <!-- Store Listings -->
   <section id="stores" class="max-w-7xl mx-auto px-4 py-12 space-y-12">
@@ -424,8 +453,63 @@
     <p>&copy; 2025 Orbit Student Organisation - University of Twente</p>
   </footer>
   
-<!-- Your external JavaScript file -->
-<script src="search.js" defer></script>
+<!-- <!-- Your external JavaScript file -->
+<script src="search.js" defer></script> -->
   
 </body>
 </html>
+  
+<script>
+  function smartSearch() {
+    return {
+      query: '',
+      suggestions: [],
+      show: false,
+      allElements: [],
+      init() {
+        // Collect searchable content
+        this.allElements = Array.from(document.querySelectorAll("h2, h3, h4, p")).map(el => ({
+          el: el,
+          text: el.textContent.trim()
+        }));
+      },
+      updateSuggestions() {
+        const term = this.query.toLowerCase();
+        if (!term) {
+          this.suggestions = [];
+          this.show = false;
+          return;
+        }
+
+        this.suggestions = this.allElements
+          .filter(item => item.text.toLowerCase().includes(term))
+          .slice(0, 10); // limit results
+
+        this.show = this.suggestions.length > 0;
+      },
+      scrollTo(el) {
+        this.clearHighlights();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        el.classList.add("highlighted");
+        this.show = false;
+      },
+      clearSearch() {
+        this.query = '';
+        this.suggestions = [];
+        this.show = false;
+        this.clearHighlights();
+      },
+      goToFirstMatch() {
+        if (this.suggestions.length > 0) {
+          this.scrollTo(this.suggestions[0].el);
+        }
+      },
+      clearHighlights() {
+        document.querySelectorAll(".highlighted").forEach(el => {
+          el.classList.remove("highlighted");
+        });
+      }
+    };
+  }
+</script>
+
