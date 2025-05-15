@@ -68,6 +68,24 @@
     <h2 class="text-3xl font-bold mb-4">Discover Affordable Stores in Enschede</h2>
     <p class="text-lg">Helping international students shop smartly with local tips by Orbit Student Organisation</p>
   </header>
+  <!-- Search Functionality -->
+<div class="bg-white py-4 px-4 shadow sticky top-[112px] z-10" x-data="{ query: '' }">
+  <div class="max-w-4xl mx-auto flex gap-2">
+    <input
+      type="text"
+      x-model="query"
+      @keyup.enter="searchInPage(query)"
+      placeholder="Search for a store or item..."
+      class="w-full border border-gray-300 rounded-lg px-4 py-2"
+    />
+    <button
+      @click="searchInPage(query)"
+      class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+    >
+      Search
+    </button>
+  </div>
+</div>
 
   <!-- Store Listings -->
   <section id="stores" class="max-w-7xl mx-auto px-4 py-12 space-y-12">
