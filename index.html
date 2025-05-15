@@ -13,6 +13,11 @@
       object-fit: cover;
     }
   </style>
+  <style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
 </head>
 <body class="bg-gray-50 text-gray-800">
   <!-- Centered Transparent Logo -->
@@ -44,9 +49,20 @@
       <a href="#contact" class="block py-2 text-blue-600 hover:underline">Contact</a>
     </div>
   </nav>
-
-
-
+      <!-- Quick Category Navigation -->
+<div class="bg-white shadow py-4 px-4 sticky top-[64px] z-10">
+  <div class="max-w-7xl mx-auto flex flex-wrap gap-4 justify-center text-sm font-medium">
+    <a href="#groceries" class="text-blue-600 hover:underline">🛒 Groceries</a>
+    <a href="#home" class="text-blue-600 hover:underline">🏠 Home Supplies</a>
+    <a href="#clothing" class="text-blue-600 hover:underline">👕 Clothing</a>
+    <a href="#pharmacy" class="text-blue-600 hover:underline">🧼 Pharmacy</a>
+    <a href="#electronics" class="text-blue-600 hover:underline">💻 Electronics</a>
+    <a href="#secondhand" class="text-blue-600 hover:underline">♻️ Second-hand</a>
+    <a href="#bikes" class="text-blue-600 hover:underline">🚲 Bikes</a>
+    <a href="#barbers" class="text-blue-600 hover:underline">💇 Barbers</a>
+    <a href="#cafes" class="text-blue-600 hover:underline">☕ Study Cafés</a>
+  </div>
+</div>
   <!-- Hero Section -->
   <header class="bg-blue-100 py-16 text-center">
     <h2 class="text-3xl font-bold mb-4">Discover Affordable Stores in Enschede</h2>
@@ -57,6 +73,7 @@
   <section id="stores" class="max-w-7xl mx-auto px-4 py-12 space-y-12">
     <!-- Groceries -->
     <div>
+      <div id="groceries">
       <h3 class="text-2xl font-semibold mb-6">🛒 Groceries & Essentials</h3>
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Albert Heijn -->
@@ -100,6 +117,7 @@
 
     <!-- Home & Kitchen Supplies -->
 <div>
+  <div id="home">
   <h3 class="text-2xl font-semibold mb-6">🏠 Home & Kitchen Supplies</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Action -->
@@ -135,6 +153,7 @@
 
       <!-- Clothing -->
 <div>
+  <div id="clothing">
   <h3 class="text-2xl font-semibold mb-6">👕 Clothing (Budget Options)</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Primark -->
@@ -169,6 +188,7 @@
     
        <!-- Health & Beauty / Pharmacy -->
 <div>
+  <div id="pharmacy">
   <h3 class="text-2xl font-semibold mb-6">🧼 Health & Beauty / Pharmacy</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Kruidvat -->
@@ -203,6 +223,7 @@
       
       <!-- Electronics & Accessories -->
 <div>
+  <div id="electronics">
   <h3 class="text-2xl font-semibold mb-6">💻 Electronics & Accessories</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- MediaMarkt -->
@@ -237,6 +258,7 @@
 
     <!-- Second-Hand Stores -->
 <div>
+  <div id="secondhand">
   <h3 class="text-2xl font-semibold mb-6">♻️ Second-Hand Stores</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Het Goed -->
@@ -261,6 +283,7 @@
 </div>
     <!-- Bicycle Shops -->
 <div>
+  <div id="bikes">
   <h3 class="text-2xl font-semibold mb-6">🚲 Bicycle Shops</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Decathlon -->
@@ -295,6 +318,7 @@
    
     <!-- Haircuts & Grooming -->
 <div>
+  <div id="barbers">
   <h3 class="text-2xl font-semibold mb-6">💇 Haircuts & Grooming</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Turkish Barber -->
@@ -320,6 +344,7 @@
     
    <!-- Study Cafés & Chill Spots -->
 <div>
+  <div id="cafes">
   <h3 class="text-2xl font-semibold mb-6">☕ Study Cafés & Chill Spots</h3>
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Bagels & Beans -->
