@@ -1,644 +1,318 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Affordable Stores in Enschede | Orbit UTwente</title>
+  <title>Orbit Student Association | ITC</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <style>
-    img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-  </style>
-  <style>
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
-  <style>
-  .highlighted {
-    background-color: yellow;
-    transition: background-color 1s ease;
-  }
-</style>
-
 </head>
-  <!-- Back to Top Button -->
-<div
-  x-data="{ show: false }"
-  x-init="window.addEventListener('scroll', () => show = window.scrollY > 300)"
-  x-show="show"
-  x-transition
-  class="fixed bottom-6 right-6 z-50"
->
-  <button
-    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
-    class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-xl text-xl transition-opacity duration-300"
-    title="Back to Top"
-  >
-    ⬆️ Up
-  </button>
-</div>
-<!-- Scroll to Bottom Button -->
-<div
-  x-data="{ show: true }"
-  x-init="window.addEventListener('scroll', () => show = window.scrollY < 300)"
-  x-show="show"
-  x-transition.opacity
-  class="fixed bottom-6 left-6 z-50"
->
-  <button
-    @click="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
-    class="bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-xl text-xl transition-opacity duration-300"
-    title="Scroll to Bottom"
-  >
-    ⬇️ Down
-  </button>
-</div>
-<body class="bg-gray-50 text-gray-800">
-  <!-- Centered Transparent Logo -->
-  <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
-    <img src="logo.png" alt="Orbit Logo" class="opacity-5 max-w-xs md:max-w-sm lg:max-w-md">
-  </div>
+<body class="bg-gray-50 text-gray-800" x-data="{ menuOpen: false }">
 
-  <!-- Navbar with Burger Menu -->
-  <nav class="bg-white shadow sticky top-0 z-10" x-data="{ open: false }">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold">Designed by Orbit</h1>
-      <!-- Desktop Links -->
-      <div class="hidden md:flex space-x-4">
-        <a href="#stores" class="text-blue-600 hover:underline">Stores</a>
-        <a href="#about" class="text-blue-600 hover:underline">About</a>
-        <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
-      </div>
-      <!-- Mobile Burger -->
-      <button class="md:hidden focus:outline-none" @click="open = !open">
-        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+  <!-- Navbar with burger icon -->
+  <header class="bg-white shadow sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Orbit ITC</h1>
+      <button @click="menuOpen = !menuOpen" class="md:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
+      <nav class="hidden md:flex gap-6">
+        <div class="relative group">
+          <button class="font-semibold">Orbit Info</button>
+          <div class="absolute hidden group-hover:block bg-white shadow p-4 rounded mt-2 space-y-2 z-30">
+            <a href="#intro" class="block hover:text-blue-600">Intro</a>
+            <a href="#events" class="block hover:text-blue-600">Events</a>
+            <a href="#calendar" class="block hover:text-blue-600">Calendar</a>
+            <a href="#facilities" class="block hover:text-blue-600">Facilities</a>
+            <a href="#membership" class="block hover:text-blue-600">Membership</a>
+            <a href="#board" class="block hover:text-blue-600">Board Members</a>
+            <a href="#contact" class="block hover:text-blue-600">Contact</a>
+          </div>
+        </div>
+        <div class="relative group">
+    <a href="affordable-stores.html" target="_blank" class="font-semibold hover:text-blue-600">
+      Affordable Stores
+    </a>
+    
+        </div>
+      </nav>
     </div>
-    <!-- Mobile Menu -->
-    <div class="md:hidden px-4 pb-4" x-show="open" x-transition>
-      <a href="#stores" class="block py-2 text-blue-600 hover:underline">Stores</a>
-      <a href="#about" class="block py-2 text-blue-600 hover:underline">About</a>
-      <a href="#contact" class="block py-2 text-blue-600 hover:underline">Contact</a>
+    <div x-show="menuOpen" class="md:hidden bg-white shadow px-6 py-4 space-y-2">
+      <a href="#intro" class="block">Intro</a>
+      <a href="#events" class="block">Events</a>
+      <a href="#calendar" class="block">Calendar</a>
+      <a href="#facilities" class="block">Facilities</a>
+      <a href="#membership" class="block">Membership</a>
+      <a href="#board" class="block">Board Members</a>
+      <a href="#contact" class="block">Contact</a>
+      <hr>
+      <a href="#stores" class="block">Affordable Stores</a>
     </div>
-  </nav>
-  <!-- Smart Search with Suggestions -->
-<div class="bg-white py-4 px-4 shadow sticky top-[112px] z-20" x-data="smartSearch()" @click.outside="show = false">
-  <div class="max-w-4xl mx-auto relative">
-    <div class="flex gap-2">
-      <input
-        type="text"
-        x-model="query"
-        @input="updateSuggestions"
-        @keydown.enter.prevent="goToFirstMatch"
-        placeholder="Search stores, categories, items..."
-        class="w-full border border-gray-300 rounded-lg px-4 py-2"
-      />
-      <button @click="clearSearch" class="bg-gray-200 px-3 py-2 rounded hover:bg-gray-300">Clear</button>
-    </div>
-
-    <!-- Suggestion Dropdown -->
-    <ul x-show="show && suggestions.length" class="absolute left-0 right-0 bg-white border mt-1 rounded shadow max-h-60 overflow-y-auto z-50">
-      <template x-for="(result, index) in suggestions" :key="index">
-        <li>
-          <button
-            @click="scrollTo(result.el)"
-            class="w-full text-left px-4 py-2 hover:bg-blue-100"
-            x-text="result.text"
-          ></button>
-        </li>
-      </template>
-    </ul>
-  </div>
-</div>
-      <!-- Quick Category Navigation -->
-<div class="bg-white shadow py-4 px-4 sticky top-[64px] z-10">
-  <div class="max-w-7xl mx-auto flex flex-wrap gap-4 justify-center text-sm font-medium">
-    <a href="#groceries" class="text-blue-600 hover:underline">🛒 Groceries</a>
-    <a href="#home" class="text-blue-600 hover:underline">🏠 Home Supplies</a>
-    <a href="#clothing" class="text-blue-600 hover:underline">👕 Clothing</a>
-    <a href="#pharmacy" class="text-blue-600 hover:underline">🧼 Pharmacy</a>
-    <a href="#electronics" class="text-blue-600 hover:underline">💻 Electronics</a>
-    <a href="#secondhand" class="text-blue-600 hover:underline">♻️ Second-hand</a>
-    <a href="#bikes" class="text-blue-600 hover:underline">🚲 Bikes</a>
-    <a href="#barbers" class="text-blue-600 hover:underline">💇 Barbers</a>
-    <a href="#cafes" class="text-blue-600 hover:underline">☕ Study Cafés</a>
-    <a href="#prayer" class="text-blue-600 hover:underline">🕌 Prayer Places</a>
-    <a href="#restaurants" class="text-blue-600 hover:underline">🍛 Intl. Restaurants</a>
-    <a href="#parks" class="text-blue-600 hover:underline">🌳 Parks</a>
-    <a href="#libraries" class="text-blue-600 hover:underline">📚 Libraries</a>
-    <a href="#games" class="text-blue-600 hover:underline">🕹️ Gaming Zones</a>
-
-  </div>
-</div>
-  <!-- Hero Section -->
-  <header class="bg-blue-100 py-16 text-center">
-    <h2 class="text-3xl font-bold mb-4">Discover Affordable Stores in Enschede</h2>
-    <p class="text-lg">Helping international students shop smartly with local tips by Orbit Student Organisation</p>
   </header>
 
+  <section class="bg-blue-100 text-center py-20">
+    <h1 class="text-4xl md:text-5xl font-extrabold">Welcome to Orbit Student Association in ITC</h1>
+  </section>
 
-  <!-- Store Listings -->
-  <section id="stores" class="max-w-7xl mx-auto px-4 py-12 space-y-12">
-    <!-- Groceries -->
+<section id="intro" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
     <div>
-      <div id="groceries">
-      <h3 class="text-2xl font-semibold mb-6">🛒 Groceries & Essentials</h3>
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <!-- Albert Heijn -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <img src= "Albert-Heijn-Van-Heekplein-2023-Centrum-Enschede-1.webp" alt="Albert Heijn" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h4 class="text-xl font-bold mb-2">Albert Heijn - Grocery</h4>
-            <p class="mb-2">Reliable, but a bit pricier. Daily groceries, fresh produce, snacks, beverages.</p>
-            <a href="https://maps.app.goo.gl/6pcgJQ8oQbPNkEnK7" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-          </div>
-        </div>
-        <!-- Jumbo -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <img src= "jumbo.jpeg" alt="Jumbo" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h4 class="text-xl font-bold mb-2">Jumbo - Grocery</h4>
-            <p class="mb-2">Large selection, fair pricing. All food essentials and household products.</p>
-            <a href="https://maps.app.goo.gl/NYB8Q6S7Au8jhkFb9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-          </div>
-        </div>
-        <!-- Lidl -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <img src="lidl.jpg" alt="Lidl" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h4 class="text-xl font-bold mb-2">Lidl - Grocery</h4>
-            <p class="mb-2">Budget-friendly supermarket with good quality essentials.</p>
-            <a href="https://maps.app.goo.gl/RMgHtzrXi2gkFGUX6" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-          </div>
-        </div>
-        <!-- Amazing Oriental -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Amazing_Oriental.jpg" alt="Amazing Oriental" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h4 class="text-xl font-bold mb-2">Amazing Oriental - Asian Supermarket</h4>
-            <p class="mb-2">Asian food, spices, sauces, noodles, snacks and frozen goods.</p>
-            <a href="https://goo.gl/maps/fUYcY5Wb3c22" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-          </div>
-        </div>
-      </div>
+      <h2 class="text-3xl font-bold mb-4">Who We Are</h2>
+      <p class="text-lg text-gray-700 text-justify mb-6">
+        At ITC, University of Twente, where students from across the globe come together to pursue advanced studies in geo-information science and earth observation, adapting to a new academic and cultural environment can be both exciting and challenging. That’s where Orbit steps in not just as a student board, but as a bridge between individuals, cultures, and experiences. Founded with the belief that a sense of belonging is essential for academic and personal growth, Orbit is a student-led association committed to creating a supportive and inclusive space for all ITC students. We understand that true success goes beyond grades; it’s also about friendships formed, traditions shared, and memories created along the way. That’s why we organize everything from academic workshops and career talks to cultural festivals and social events each designed to connect, uplift, and empower. Orbit is more than a committee; it’s a community built by students, for students a place where every voice matters, and every journey is celebrated.
+      </p>
     </div>
+    <div class="flex justify-center">
+      <img src="logo.png" alt="Orbit intro image" class="w-100 h-100 rounded-full object-cover shadow-lg">
+    </div>
+  </div>
+</section>
 
-    <!-- Home & Kitchen Supplies -->
-<div>
-  <div id="home">
-  <h3 class="text-2xl font-semibold mb-6">🏠 Home & Kitchen Supplies</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Action -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Action_store.jpg" alt="Action" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Action - Budget Home Store</h4>
-        <p class="mb-2">Home goods, school supplies, cleaning products, and small electronics.</p>
-        <a href="https://goo.gl/maps/EJY7gBEnuMRCYZaJ7" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
+
+<section id="events" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Orbit Events</h2>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Event 1 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="Celebrating_love_and_friendship.jpg" alt="Valentine event" class="w-full h-56 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Celebrating Love and Friendship</h3>
+          <p class="text-gray-700 text-justify">For our Valentine’s Day celebration, we embraced the spirit of love and friendship. From anonymous love notes to dinners with friends, and a festive party to top it all off. The love could be felt throughout the entire ITC faculty.</p>
+        </div>
       </div>
-    </div>
-    <!-- HEMA -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/HEMA_Amsterdam.jpg" alt="HEMA" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">HEMA - Everyday Goods</h4>
-        <p class="mb-2">Home decor, kitchenware, clothes, snacks, electronics.</p>
-        <a href="https://goo.gl/maps/fZGxiJWmYzMMrpbe6" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
+
+      <!-- Event 2 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="Spring_in_keukenhof.jpg" alt="Keukenhof Spring Trip" class="w-full h-70 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Spring in Keukenhof</h3>
+          <p class="text-gray-700 text-justify">To welcome the beauty of the season, we spent a blooming day at Keukenhof, surrounded by tulips, sunshine, and laughter. From peaceful strolls through flower-lined paths to joyful group photos, it was a perfect escape into nature.</p>
+        </div>
       </div>
-    </div>
-    <!-- IKEA -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/IKEA_Hengelo.jpg" alt="IKEA" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">IKEA Hengelo - Furniture</h4>
-        <p class="mb-2">Affordable furniture, kitchenware, and decor. Reachable by train.</p>
-        <a href="https://goo.gl/maps/zZzV2Gkm6u92" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
+
+      <!-- Event 3 -->
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <img src="Food_festival.jpg" alt="Food Festival" class="w-full h-70 object-cover">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">International Food Festival</h3>
+    <p class="text-gray-700 text-justify">We traveled the world through the flavors of our community during the International Food Day, with delicious homemade dishes from eight different countries. It was a celebration of culture, connection, and the joy of sharing a meal together.</p>
+  </div>
+</div>
+      <!-- Event 4 -->
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <img src="Sports_day.jpg" alt="Sports Day" class="w-full h-70 object-cover">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">International Sports Day</h3>
+    <p class="text-gray-700 text-justify">Students and ITC staff came together for an active and cheerful afternoon, enjoying soccer, volleyball, and other games. It was a great chance to build team spirit, relax, and have fun outside the academic routine.</p>
   </div>
 </div>
 
+<!-- Event 5 -->
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <img src="Picnic.jpg" alt="Picnic" class="w-full h-70 object-cover">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Picnic at Wooldrikspark</h3>
+    <p class="text-gray-700 text-justify">We gathered for a relaxing afternoon in the park, enjoying nature, games, and even meeting some furry friends. It was a joyful break and a beautiful way to connect with others in a calm environment.</p>
+  </div>
+</div>
 
-      <!-- Clothing -->
-<div>
-  <div id="clothing">
-  <h3 class="text-2xl font-semibold mb-6">👕 Clothing (Budget Options)</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Primark -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Primark_Oxford_Street_West_2016.jpg" alt="Primark" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Primark - Budget Clothing</h4>
-        <p class="mb-2">Trendy clothes and essentials at very low prices.</p>
-        <a href="https://goo.gl/maps/3Nq7yJ96n7U8cQKw5" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Zara / H&M -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/H%26M_store.jpg" alt="Zara & H&M" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Zara / H&M - Fashion</h4>
-        <p class="mb-2">Stylish clothing for all seasons. Great for students.</p>
-        <a href="https://goo.gl/maps/UR9qkEDDBGVBbsut7" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Kringloop -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Kringloopwinkel.jpg" alt="Kringloop" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Kringloop - Second-hand Clothing</h4>
-        <p class="mb-2">Affordable and eco-friendly used clothes and shoes.</p>
-        <a href="https://goo.gl/maps/hPqih8i8PKG2" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
+<!-- Event 6 -->
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <img src="Teachers_day.jpg" alt="Teacher Award" class="w-full h-70 object-cover">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Teacher of the Year</h3>
+    <p class="text-gray-700 text-justify">Congratulations to Lucas De Oto, our Teacher of the Year 2025! Orbit celebrates the educators who make a difference every day with passion and dedication.</p>
   </div>
 </div>
-    
-       <!-- Health & Beauty / Pharmacy -->
-<div>
-  <div id="pharmacy">
-  <h3 class="text-2xl font-semibold mb-6">🧼 Health & Beauty / Pharmacy</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Kruidvat -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Kruidvat_Store_Exterior.jpg" alt="Kruidvat" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Kruidvat - Drugstore</h4>
-        <p class="mb-2">Personal care, cosmetics, health items, and some electronics.</p>
-        <a href="https://goo.gl/maps/jCTSMHpHVmzABq7B7" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Etos -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Etos_supermarkt.jpg" alt="Etos" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Etos - Beauty & Pharmacy</h4>
-        <p class="mb-2">Pharmacy essentials, skincare, cosmetics, and vitamins.</p>
-        <a href="https://goo.gl/maps/B9a7rs3KEkfttYh86" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- DA Drogist -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/DA_drogist.jpg" alt="DA Drogist" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">DA Drogist - Pharmacy</h4>
-        <p class="mb-2">Wide selection of over-the-counter meds, personal care, and more.</p>
-        <a href="https://goo.gl/maps/pxPczMkNEjE2" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
+
+<!-- Event 7 -->
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <img src="Graduation.jpg" alt="Graduation" class="w-full h-70 object-cover">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Graduation 2025</h3>
+    <p class="text-gray-700 text-justify">A proud moment as we honored the graduating class of 2025. With smiles, speeches, and caps in the air, the ceremony marked a new beginning for our incredible ITC students.</p>
   </div>
 </div>
+
       
-      <!-- Electronics & Accessories -->
-<div>
-  <div id="electronics">
-  <h3 class="text-2xl font-semibold mb-6">💻 Electronics & Accessories</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- MediaMarkt -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/MediaMarkt_Sign.jpg" alt="MediaMarkt" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">MediaMarkt - Electronics</h4>
-        <p class="mb-2">Laptops, phones, accessories, appliances, and gadgets.</p>
-        <a href="https://goo.gl/maps/zGhP7n6EFM1pU2Fw6" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Phone Stores -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Phone_shop.jpg" alt="Phone Stores" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Phone Stores - SIM & Accessories</h4>
-        <p class="mb-2">SIM cards (Lycamobile, Lebara), cases, chargers, and prepaid plans.</p>
-        <a href="https://goo.gl/maps/62rzk2Fs58bdFztW8" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Action -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Action_store.jpg" alt="Action Electronics" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Action - Budget Electronics</h4>
-        <p class="mb-2">Affordable electronics like USB cables, power banks, headphones, etc.</p>
-        <a href="https://goo.gl/maps/EJY7gBEnuMRCYZaJ7" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
     </div>
   </div>
-</div>
-
-    <!-- Second-Hand Stores -->
-<div>
-  <div id="secondhand">
-  <h3 class="text-2xl font-semibold mb-6">♻️ Second-Hand Stores</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Het Goed -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Het_Goed_Enschede.jpg" alt="Het Goed" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Het Goed - Thrift Store</h4>
-        <p class="mb-2">Furniture, clothes, books, electronics — all second-hand and affordable.</p>
-        <a href="https://goo.gl/maps/3pTPk4yHhTKwDGUW9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Kringloop Stores -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Kringloopwinkel.jpg" alt="Kringloopwinkel" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Kringloop Stores - Second-hand Shops</h4>
-        <p class="mb-2">Multiple locations around Enschede offering used goods at low prices.</p>
-        <a href="https://goo.gl/maps/hPqih8i8PKG2" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-  </div>
-</div>
-    <!-- Bicycle Shops -->
-<div>
-  <div id="bikes">
-  <h3 class="text-2xl font-semibold mb-6">🚲 Bicycle Shops</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Decathlon -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Decathlon_entrance.jpg" alt="Decathlon" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Decathlon - Bike & Sports</h4>
-        <p class="mb-2">Budget-friendly new bicycles, accessories, and repair kits.</p>
-        <a href="https://goo.gl/maps/Q3q1X9bFybcLgX1R9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- FBF - Fix Your Bike -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Bike_repair_shop.jpg" alt="Fix Your Bike" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">FBF - Fix Your Bike</h4>
-        <p class="mb-2">Bike repairs, second-hand bicycles, and student discounts.</p>
-        <a href="https://goo.gl/maps/XEXkArXSw5SC3eLC9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Facebook Marketplace -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Facebook_Marketplace_logo.png" alt="Facebook Marketplace" class="w-full h-48 object-contain bg-gray-100">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Facebook Marketplace</h4>
-        <p class="mb-2">Used bikes and parts from local sellers. Negotiate and buy directly.</p>
-        <a href="https://www.facebook.com/marketplace/enschede/" target="_blank" class="text-blue-500 hover:underline">🗺️ View Online</a>
-      </div>
-    </div>
-  </div>
-</div>
-   
-    <!-- Haircuts & Grooming -->
-<div>
-  <div id="barbers">
-  <h3 class="text-2xl font-semibold mb-6">💇 Haircuts & Grooming</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Turkish Barber -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Barbershop.jpg" alt="Turkish Barber" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Turkish Barber - Grooming</h4>
-        <p class="mb-2">Affordable and popular barber with beard trims and clean fades.</p>
-        <a href="https://goo.gl/maps/pgF3quDsoEeKcZ4a8" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Student Salons -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Hair_Salon_interior.jpg" alt="Student Hair Salon" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Student Salons - Budget Haircuts</h4>
-        <p class="mb-2">Low-cost, friendly salons near city center and Zuid campus area.</p>
-        <a href="https://goo.gl/maps/hU1cLPtLkPqpY2m97" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-  </div>
-</div>
-    
-   <!-- Study Cafés & Chill Spots -->
-<div>
-  <div id="cafes">
-  <h3 class="text-2xl font-semibold mb-6">☕ Study Cafés & Chill Spots</h3>
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <!-- Bagels & Beans -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Bagels_%26_Beans.jpg" alt="Bagels & Beans" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Bagels & Beans</h4>
-        <p class="mb-2">Cozy café with great coffee and bagels. Perfect for relaxed studying.</p>
-        <a href="https://goo.gl/maps/EkXSwLxBhZKowBuw5" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Coffee Fellows -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Coffee_Fellows_shop.jpg" alt="Coffee Fellows" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Coffee Fellows</h4>
-        <p class="mb-2">Popular chain café with Wi-Fi and calm atmosphere for study or chill.</p>
-        <a href="https://goo.gl/maps/7Ld3AUqzZDZzcvth9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-    <!-- Bibliotheek Enschede -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Bibliotheek_Enschede.jpg" alt="Bibliotheek Enschede" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h4 class="text-xl font-bold mb-2">Bibliotheek Enschede</h4>
-        <p class="mb-2">Free public library with quiet reading rooms, internet, and study desks.</p>
-        <a href="https://goo.gl/maps/ehokESAiMALzTZc37" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-      </div>
-    </div>
-  </div>
-</div>
-        <!-- Prayer Locations -->
-       <div>
-  <div id="prayer">
-    <h3 class="text-2xl font-semibold mb-6">🕌 Prayer & Worship Places</h3>
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      <!-- Mosque -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Moskee.jpg" alt="Mosque" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Enschede Mosque - Ulu Camii</h4>
-          <p class="mb-2">Large Turkish mosque near city center. Jummah, daily prayers, and community events.</p>
-          <a href="https://goo.gl/maps/YkyPWBGeKx3Y1Mr78" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-      <!-- Church -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Grote_Kerk_Enschede.jpg" alt="Church" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Grote Kerk - Protestant Church</h4>
-          <p class="mb-2">Iconic downtown church. Services in Dutch. Historic and welcoming.</p>
-          <a href="https://goo.gl/maps/Aq7J6DZfv3cGb8Mv7" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-          <!-- International Restaurants -->
-  <div>
-  <div id="restaurants">
-    <h3 class="text-2xl font-semibold mb-6">🍛 International Restaurants</h3>
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      <!-- Indian -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Indian_Food.jpg" alt="Indian Restaurant" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">India Poort</h4>
-          <p class="mb-2">Delicious North Indian cuisine with vegetarian and halal options.</p>
-          <a href="https://goo.gl/maps/wK4z5Mk8ZGyLZgfh9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-      <!-- Middle Eastern -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Shawarma_plate.jpg" alt="Middle Eastern Food" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Damascus Restaurant</h4>
-          <p class="mb-2">Syrian-style shawarma, falafel, hummus, and mixed grills.</p>
-          <a href="https://goo.gl/maps/RrYDj6qgGH8DeTQr9" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-            <!--       Parks & Picnic Spots -->
-  <div>
-  <div id="parks">
-    <h3 class="text-2xl font-semibold mb-6">🌳 Parks & Picnic Spots</h3>
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      <!-- Volkspark -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Volkspark_Enschede.jpg" alt="Volkspark" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Volkspark</h4>
-          <p class="mb-2">Perfect for walking, relaxing, and weekend BBQs. Central location.</p>
-          <a href="https://goo.gl/maps/H84deEKFqNqkdc5q6" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-      <!-- Roombeekpark -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Roombeek_park.jpg" alt="Roombeekpark" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Roombeekpark</h4>
-          <p class="mb-2">Modern green space with art, streams, and space to study or chill.</p>
-          <a href="https://goo.gl/maps/kMpxjUzW2ZhyYhZs8" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-        <!--          Libraries -->
-  <div>
-  <div id="libraries">
-    <h3 class="text-2xl font-semibold mb-6">📚 Libraries & Study Zones</h3>
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Bibliotheek_Enschede.jpg" alt="Library" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Bibliotheek Enschede</h4>
-          <p class="mb-2">Free Wi-Fi, desks, and calm spaces for reading and studying.</p>
-          <a href="https://goo.gl/maps/ehokESAiMALzTZc37" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--     Gaming Zones -->
-<div>
-  <div id="games">
-    <h3 class="text-2xl font-semibold mb-6">🕹️ Gaming Zones & Hangouts</h3>
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Gaming_zone.jpg" alt="Gaming" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h4 class="text-xl font-bold mb-2">Gamestate Enschede</h4>
-          <p class="mb-2">Arcade games, air hockey, racing simulators. Chill with friends or go solo.</p>
-          <a href="https://goo.gl/maps/nHaU59pq9rNJ6txo8" target="_blank" class="text-blue-500 hover:underline">🗺️ View on Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 
-  <!-- About Section -->
-  <section id="about" class="bg-white py-12">
-    <div class="max-w-4xl mx-auto px-4">
-      <h3 class="text-2xl font-semibold mb-4">About Orbit</h3>
-      <p>Orbit is a student organisation at the University of Twente aiming to support international students in adapting to life in Enschede. This project is built to guide students towards affordable and accessible shopping options across the city.</p>
-    </div>
+  <section id="calendar" class="py-16 bg-white text-center">
+    <h2 class="text-3xl font-bold mb-4">Orbit Calendar 2025</h2>
+    <p class="text-gray-600">[Calendar image or embed goes here]</p>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="bg-gray-100 py-12">
-    <div class="max-w-4xl mx-auto px-4">
-      <h3 class="text-2xl font-semibold mb-4">Contact Us</h3>
-      <p>Have a suggestion or want to contribute? Reach out to us at <a href="mailto:sab-itc@utwente.nl" class="text-blue-600 underline">sab-itc@utwente.nl</a></p>
+
+
+<section id="membership" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Membership Options</h2>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <img src="Orbit membership.png" alt="Orbit Membership" class="w-full h-70 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-semibold mb-4">Orbit Organisation Membership</h3>
+        <p class="text-gray-700 text-justify mb-4">
+          Becoming a member of Orbit opens the door to a vibrant, enriching student life at ITC. As a member, your voice is represented on important matters related to education and accommodation, ensuring your concerns are heard and addressed. But it’s not just about advocacy it’s also about experience. Members enjoy exclusive perks like:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 text-left space-y-2 pl-4">
+          <li> Free access for the move-in marke</li>
+          <li>Annual trip to Amsterdam</li>
+          <li>Free access to end of module parties with subsidized drinks at ITC lounge</li>
+          <li>Free indoor games: table tennis, chess, and pool (non-members €4/hour)</li>
+          <li>Free access to ITC hotel facilities such as a projector and sports equipment</li>
+          <li>Free movies and matches organized in the lounge</li>
+          <li>Free entrance to indoor ice skating and other fun activities</li>
+          <li>Sponsorship for ITC International Food Festival</li>
+          <li>Participation in the annual international sports competition and Batavierenrace</li>
+          <li>Annual trip to the breathtaking Keukenhof flower garden</li>
+          <li>Special rental/sale prices for bikes at the Fietsenslijterij shop</li>
+        </ul>
+        <p class="mt-6 text-blue-900 hover:underline text-sm">
+          <a href="https://universiteittwente.sharepoint.com/sites/StudentAssociationBoard/Gedeelde%20documenten/Forms/AllItems.aspx?id=%2Fsites%2FStudentAssociationBoard%2FGedeelde%20documenten%2FGeneral%2F2024%20Archive%2FOrbit%2Dmembership%2Dform%2DSEP2024%2Epdf&parent=%2Fsites%2FStudentAssociationBoard%2FGedeelde%20documenten%2FGeneral%2F2024%20Archive&p=true&ga=1.html"  target="_blank">Click here for the Membership form</a>
+        </p>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- Event 7 -->
+<section id="membership" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Membership Options</h2>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <img src="Facilities.png" alt="Facilities" class="w-full h-70 object-cover">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Orbit Facilities Membership</h3>
+    <p class="text-gray-700 text-justify">  By becoming a member, you’ll enjoy exclusive free access to </p>
+    <ul class="list-disc list-inside text-gray-700 text-left space-y-2 pl-4">
+  <li>Free access for the move-in market</li>
+  <li>Free access to end-of-module parties with subsidized drinks at the ITC lounge</li>
+  <li>Free indoor games: table tennis, chess, and pool (non-members €4/hour)</li>
+  <li>Free access to ITC hotel facilities such as a projector and sports equipment</li>
+  <li>Free movie and match screenings in the lounge</li>
+  <li>Free entrance to indoor ice skating and other fun activities</li>
+</ul>
+    <p class="mt-6 text-blue-900 hover:underline text-sm">
+          <a href="1.html"  target="_blank">Click here for the Membership form</a>
+        </p>
+  </div>
+</div>
+
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-white text-center py-6 border-t">
-    <p>&copy; 2025 Orbit Student Organisation - University of Twente</p>
+<section id="board" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Meet the Board</h2>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Avinash -->
+      <div class="flex items-start gap-6">
+        <img src="avinash.jpg" alt="Avinash Reddy" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Avinash Reddy<br><span class="text-sm font-normal">Sports Secretary</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            I'm Avinash Reddy, specializing in Natural Resources Management. My role is to conduct sports events for fun and competition. Feel free to approach me with event ideas or if you’d like to participate!
+          </p>
+        </div>
+      </div>
+
+      <!-- Abdulqudus -->
+      <div class="flex items-start gap-6">
+        <img src="abdulqudus.jpg" alt="Abdulqudus" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Abdulqudus<br><span class="text-sm font-normal">Residence Coordinator</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            I specialize in Land Administration and serve as Residence Coordinator. I support housing, well-being, and student needs. Reach out if you have concerns or want to build a better living space.
+          </p>
+        </div>
+      </div>
+
+      <!-- Danush -->
+      <div class="flex items-start gap-6">
+        <img src="danush.jpg" alt="Danush Raghu" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Danush Raghu<br><span class="text-sm font-normal">Social Event Coordinator</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            I'm Danush, focusing on Natural Resource Management. I organize inclusive events that build community and collaboration. Let’s connect to make student life engaging and meaningful!
+          </p>
+        </div>
+      </div>
+        <!-- Jaheer -->
+      <div class="flex items-start gap-6">
+        <img src="jaheer.jpg" alt="Jaheeruddeen Mogal" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Jaheer Mogal<br><span class="text-sm font-normal">Treasurer</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            A passionate learner, community-builder, and enthusiastic member of the vibrant ITC student body. Currently pursuing a Master’s in Geoinformatics at the University of Twente, Jaheeruddeen brings with him not just academic dedication, but a deep commitment to people and purpose. Hailing from India, he carries a strong cultural foundation and a natural inclination for connection, which shines through in his role as Treasurer of Orbit, the Student Association Board of ITC. Whether he's organizing community events, managing responsibilities, or simply offering a helping hand, Jaheeruddeen thrives in social settings where he can make a positive impact. Beyond the classroom, he finds joy in playing badminton, diving into swimming sessions, and embracing moments that bring people together. For Jaheeruddeen, student life is not just about acquiring knowledge it’s about growing through shared experiences, meaningful service, and an unwavering belief in the power of community.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sara -->
+      <div class="flex items-start gap-6">
+        <img src="sara.jpg" alt="Sara Melgarejo" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Sara Melgarejo<br><span class="text-sm font-normal">Academic Affairs Coordinator</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            From Colombia and specialized in WREM, I work to amplify student voices on academic matters and create a more supportive environment for everyone navigating a new country.
+          </p>
+        </div>
+      </div>
+
+      <!-- Saurabh -->
+      <div class="flex items-start gap-6">
+        <img src="saurabh.jpg" alt="Saurabh Bhagchandani" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Saurabh Bhagchandani<br><span class="text-sm font-normal">Asst. Secretary & Media/Comms</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            I'm Saurabh, focused on Urban Planning and Management. I help with communication and student engagement at Orbit. Let’s build a vibrant community together!
+          </p>
+        </div>
+      </div>
+
+      <!-- smith -->
+      <div class="flex items-start gap-6">
+        <img src="Smith.jpg" alt="Smith" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Smith<br><span class="text-sm font-normal">President</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+          
+          </p>
+        </div>
+      </div>
+
+        <!-- Nawar -->
+      <div class="flex items-start gap-6">
+        <img src="Nawar.jpg" alt="Nawar" class="w-32 h-32 rounded-full object-cover shadow-md">
+        <div>
+          <h3 class="text-xl font-semibold">Nawar<br><span class="text-sm font-normal">Vice President</span></h3>
+          <p class="text-gray-700 text-sm mt-2 text-justify">
+            
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="contact" class="py-16 bg-white text-center">
+    <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+    <p class="text-gray-600">Reach out at: <a href="mailto:sab-itc@utwente.nl" class="text-blue-600 underline">sab-itc@utwente.nl</a></p>
+  </section>
+
+  <footer class="bg-gray-100 text-center py-6 text-sm">
+    &copy; 2025 Orbit Student Association | University of Twente
   </footer>
-  
-  
+
 </body>
 </html>
-  
-<script>
-  function smartSearch() {
-    return {
-      query: '',
-      suggestions: [],
-      show: false,
-      allElements: [],
-      init() {
-        // Collect searchable content
-        this.allElements = Array.from(document.querySelectorAll("h2, h3, h4, p")).map(el => ({
-          el: el,
-          text: el.textContent.trim()
-        }));
-      },
-      updateSuggestions() {
-        const term = this.query.toLowerCase();
-        if (!term) {
-          this.suggestions = [];
-          this.show = false;
-          return;
-        }
-
-        this.suggestions = this.allElements
-          .filter(item => item.text.toLowerCase().includes(term))
-          .slice(0, 10); // limit results
-
-        this.show = this.suggestions.length > 0;
-      },
-      scrollTo(el) {
-        this.clearHighlights();
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        el.classList.add("highlighted");
-        this.show = false;
-      },
-      clearSearch() {
-        this.query = '';
-        this.suggestions = [];
-        this.show = false;
-        this.clearHighlights();
-      },
-      goToFirstMatch() {
-        if (this.suggestions.length > 0) {
-          this.scrollTo(this.suggestions[0].el);
-        }
-      },
-      clearHighlights() {
-        document.querySelectorAll(".highlighted").forEach(el => {
-          el.classList.remove("highlighted");
-        });
-      }
-    };
-  }
-</script>
-
